@@ -1,52 +1,21 @@
-const text = document.getElementById("info-text");
-const image = document.getElementById("info-image");
+document.addEventListener("DOMContentLoaded", function(){
+
 const dots = document.querySelectorAll(".dot");
+const contents = document.querySelectorAll(".info-content");
 
-const steps = [
+dots.forEach((dot, index) => {
 
-{
-text: "Concept du produit et inspiration nacrée.",
-img: "image/general-img-portrait.png"
-},
+    dot.addEventListener("click", () => {
 
-{
-text: "Création du modèle 3D et exploration des textures.",
-img: "image/general-img-portrait.png"
-},
+        // enlever active partout
+        dots.forEach(d => d.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
 
-{
-text: "Tests d'éclairage et rendu dans Blender.",
-img: "image/general-img-portrait.png"
-},
+        // ajouter active au bon
+        dot.classList.add("active");
+        contents[index].classList.add("active");
 
-{
-text: "Produit final et présentation du projet.",
-img: "image/fardPaupière.png"
-}
-
-];
-
-dots.forEach(dot => {
-
-dot.addEventListener("click", () => {
-
-const step = dot.dataset.step;
-
-text.style.opacity = 0;
-image.style.opacity = 0;
-
-setTimeout(()=>{
-
-text.textContent = steps[step].text;
-image.src = steps[step].img;
-
-dots.forEach(d => d.classList.remove("active"));
-dot.classList.add("active");
-
-text.style.opacity = 1;
-image.style.opacity = 1;
-
-},200);
+    });
 
 });
 
